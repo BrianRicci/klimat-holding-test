@@ -1,0 +1,14 @@
+{% extends 'service/base.html' %}
+
+{% block title %}
+    Добавить меню
+{% endblock %}
+
+{% block content %}
+    <h1 class="mb-3 text-center">Добавить меню</h1>
+    <form action="{% url 'menu:menu_add' coffee_house_slug %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p><input type="submit" value="Добавить меню"></p>
+    </form>
+{% endblock %}

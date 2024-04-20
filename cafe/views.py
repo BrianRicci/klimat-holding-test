@@ -13,8 +13,11 @@ def coffee_house_list(request):
 def coffee_house_details(request, coffee_house_slug):
     """Подробнее о кофейне"""
     coffee_house = get_object_or_404(CoffeeHouse, slug=coffee_house_slug)
+    # Список меню, которые имеет кофейня
+    menu_list = coffee_house.menus.all()
     return render(request, 'cafe/details.html',
-                  {'coffee_house': coffee_house})
+                  {'coffee_house': coffee_house,
+                   'menu_list': menu_list})
 
 
 def coffee_house_add(request):

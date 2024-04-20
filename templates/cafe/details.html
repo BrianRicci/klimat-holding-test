@@ -12,9 +12,22 @@
     <p class="fs-5">Описание: {{ coffee_house.description }}</p>
     <p class="text-body-tertiary">Время работы: {{ coffee_house.work_time }}</p>
     <div class="d-flex flex-row">
+        <a class="text-dark btn btn-outline-primary me-2" href="{% url 'menu:menu_add' coffee_house_slug=coffee_house.slug %}">Добавить меню</a>
         <a class="text-dark btn btn-outline-warning me-2" href="{% url 'cafe:coffee_house_edit' coffee_house_slug=coffee_house.slug %}">Редактировать</a>
         <a class="text-white btn btn-danger" href="">Удалить</a>
     </div>
 </div>
+{{ menu_list }}
+
+{% if menu_list %}
+<h1>Меню:</h1>
+{% for menu in menu_list %}
+<div class="alert alert-secondary" role="alert">
+    <h2>{{ menu.name }}</h2>
+    <a class="text-dark btn btn-outline-warning me-2" href="">Редактировать</a>
+    <a class="text-white btn btn-danger" href="">Удалить</a>
+</div>
+    {% endfor %}
+{% endif %}
 
 {% endblock %}

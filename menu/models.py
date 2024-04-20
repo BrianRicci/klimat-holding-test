@@ -6,12 +6,12 @@ class Menu(models.Model):
     """Меню кофейни"""
     coffee_house = models.ForeignKey('cafe.CoffeeHouse',
                                      on_delete=models.CASCADE,
-                                     related_name='menu')
+                                     related_name='menus')
     name = models.CharField(max_length=64, unique=True)
     slug = models.SlugField(max_length=128, unique=True)
 
     class Meta:
-        ordering = ['-name']
+        ordering = ['name']
 
     def __str__(self) -> str:
         return self.name
@@ -42,7 +42,7 @@ class MenuItem(models.Model):
                                     choices=MeasureUnit.choices)
 
     class Meta:
-        ordering = ['-name']
+        ordering = ['name']
 
     def __str__(self) -> str:
         return self.name

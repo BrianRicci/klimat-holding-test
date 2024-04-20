@@ -1,0 +1,14 @@
+{% extends 'service/base.html' %}
+
+{% block title %}
+    Редактировать данные
+{% endblock %}
+
+{% block content %}
+    <h1 class="mb-3 text-center">Редактировать данные</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p><input type="submit" value="Редактировать"></p>
+    </form>
+{% endblock %}

@@ -1,10 +1,10 @@
 from django.db import models
-from django.template.defaultfilters import slugify
+from slugify import slugify
 
 
-class Menus(models.Model):
+class Menu(models.Model):
     """Меню кофейни"""
-    coffee_house = models.ForeignKey('cafe.CoffeeHouses',
+    coffee_house = models.ForeignKey('cafe.CoffeeHouse',
                                      on_delete=models.CASCADE,
                                      related_name='menu')
     name = models.CharField(max_length=64, unique=True)
@@ -20,10 +20,10 @@ class Menus(models.Model):
         if self.name:
             self.slug = slugify(self.name)
 
-        super(Menus, self).save(*args, **kwargs)
+        super(Menu, self).save(*args, **kwargs)
 
 
-class MenuItems(models.Model):
+class MenuItem(models.Model):
     """Одна из позиций в меню"""
 
     class MeasureUnit(models.TextChoices):
@@ -33,7 +33,7 @@ class MenuItems(models.Model):
         ML = 'мл', 'Миллилитр'
         L = 'л', 'Литр'
 
-    menu = models.ForeignKey('Menus',
+    menu = models.ForeignKey('Menu',
                              on_delete=models.CASCADE,
                              related_name='item')
     name = models.CharField(max_length=64)

@@ -1,15 +1,15 @@
 from django.db import models
-from django.template.defaultfilters import slugify
+from slugify import slugify
 
 
-class CoffeeHouses(models.Model):
+class CoffeeHouse(models.Model):
     """Кофейни"""
-    name = models.CharField(max_length=64, unique=True)
+    name = models.CharField(max_length=64, unique=True, blank=False)
     slug = models.SlugField(max_length=128, unique=True)
     # Название и слаг уникальные, потому что слаг будет использоваться в ссылках
-    work_time = models.CharField(max_length=128)
+    work_time = models.CharField(max_length=128, blank=False)
     created = models.DateTimeField(auto_now_add=True)
-    description = models.TextField()
+    description = models.TextField(blank=True)
 
     class Meta:
         ordering = ['-created']
@@ -21,4 +21,4 @@ class CoffeeHouses(models.Model):
         if self.name:
             self.slug = slugify(self.name)
 
-        super(CoffeeHouses, self).save(*args, **kwargs)
+        super(CoffeeHouse, self).save(*args, **kwargs)

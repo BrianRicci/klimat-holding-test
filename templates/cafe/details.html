@@ -1,0 +1,20 @@
+{% extends 'service/base.html' %}
+
+{% block title %}
+    {{ coffee_house.name }}
+{% endblock %}
+
+{% block content %}
+<h1 class="mb-3 text-center">{{ coffee_house.name }}</h1>
+
+
+<div class="alert alert-info" role="alert">
+    <p class="fs-5">Описание: {{ coffee_house.description }}</p>
+    <p class="text-body-tertiary">Время работы: {{ coffee_house.work_time }}</p>
+    <div class="d-flex flex-row">
+        <a class="text-dark btn btn-outline-warning me-2" href="{% url 'cafe:coffee_house_edit' coffee_house_slug=coffee_house.slug %}">Редактировать</a>
+        <a class="text-white btn btn-danger" href="">Удалить</a>
+    </div>
+</div>
+
+{% endblock %}

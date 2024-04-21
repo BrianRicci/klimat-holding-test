@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from .models import Menu, MenuItem
 from .forms import MenuForm, MenuItemForm
 from cafe.models import CoffeeHouse

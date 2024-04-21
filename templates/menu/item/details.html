@@ -1,0 +1,29 @@
+{% extends 'service/base.html' %}
+
+{% block title %}
+    {{ item.name }}
+{% endblock %}
+
+{% block content %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'cafe:coffee_house_list'  %}">Главная</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'cafe:coffee_house_details' coffee_house_slug %}">{{ item.menu.coffee_house }}</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'menu:menu_details' coffee_house_slug menu_slug %}">{{ item.menu }}</a></li>
+      <li class="breadcrumb-item active">{{ item.name }} {{ item.size }} {{ item.measure_unit }}</li>
+    </ol>
+</nav>
+
+<h1 class="mb-3 text-center">{{ item.name }}</h1>
+
+<div class="alert alert-info" role="alert">
+    <h2>{{ item.name }} {{ item.size }} {{ item.measure_unit }}</h2>
+    <div class="d-flex flex-row">
+        <a class="text-dark btn btn-outline-warning me-2"
+        href="{% url 'menu:menu_item_edit' coffee_house_slug menu_slug item.id %}">Редактировать</a>
+        <a class="text-white btn btn-danger"
+        href="{% url 'menu:menu_item_delete' coffee_house_slug menu_slug item.id %}">Удалить</a>
+    </div>
+</div>
+{% endblock %}

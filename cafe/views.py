@@ -45,5 +45,11 @@ def coffee_house_edit(request, coffee_house_slug):
             return redirect('cafe:coffee_house_details', coffee_house_slug=coffee_house.slug)
     else:
         form = CoffeeHouseForm(instance=coffee_house)
-    return render(request, 'cafe/edit.html',
+    return render(request, 'service/edit.html',
                   {'form': form})
+
+
+def coffee_house_delete(request, coffee_house_slug):
+    coffee_house = get_object_or_404(CoffeeHouse, slug=coffee_house_slug)
+    coffee_house.delete()
+    return redirect('cafe:coffee_house_list')

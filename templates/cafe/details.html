@@ -5,29 +5,40 @@
 {% endblock %}
 
 {% block content %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'cafe:coffee_house_list' %}">Главная</a></li>
+      <li class="breadcrumb-item active">{{ coffee_house.name }}</li>
+    </ol>
+</nav>
+
 <h1 class="mb-3 text-center">{{ coffee_house.name }}</h1>
 
 
 <div class="alert alert-info" role="alert">
+    <h2>{{ coffee_house.name }}</h2>
     <p class="fs-5">Описание: {{ coffee_house.description }}</p>
     <p class="text-body-tertiary">Время работы: {{ coffee_house.work_time }}</p>
     <div class="d-flex flex-row">
-        <a class="text-dark btn btn-outline-primary me-2" href="{% url 'menu:menu_add' coffee_house_slug=coffee_house.slug %}">Добавить меню</a>
-        <a class="text-dark btn btn-outline-warning me-2" href="{% url 'cafe:coffee_house_edit' coffee_house_slug=coffee_house.slug %}">Редактировать</a>
-        <a class="text-white btn btn-danger" href="">Удалить</a>
+        <a class="text-dark btn btn-outline-primary me-2"
+        href="{% url 'menu:menu_add' coffee_house_slug=coffee_house.slug %}">Добавить меню</a>
+        <a class="text-dark btn btn-outline-warning me-2"
+        href="{% url 'cafe:coffee_house_edit' coffee_house_slug=coffee_house.slug %}">Редактировать</a>
+        <a class="text-white btn btn-danger" href="{% url 'cafe:coffee_house_delete' coffee_house_slug=coffee_house.slug %}">Удалить</a>
     </div>
 </div>
-{{ menu_list }}
 
 {% if menu_list %}
 <h1>Меню:</h1>
-{% for menu in menu_list %}
-<div class="alert alert-secondary" role="alert">
-    <h2>{{ menu.name }}</h2>
-    <a class="text-dark btn btn-outline-warning me-2" href="">Редактировать</a>
-    <a class="text-white btn btn-danger" href="">Удалить</a>
-</div>
-    {% endfor %}
+    <div class="alert alert-secondary w-50" role="alert">
+        <div class="list-group my-2 w-100">
+        {% for menu in menu_list %}
+            <a class="list-group-item list-group-item-action" aria-current="true"
+            href="{% url 'menu:menu_details' coffee_house_slug=coffee_house.slug menu_slug=menu.slug %}">{{ menu.name }}</a>
+        {% endfor %}
+        </div>
+    </div>
 {% endif %}
 
 {% endblock %}

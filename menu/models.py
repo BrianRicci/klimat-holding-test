@@ -35,7 +35,7 @@ class MenuItem(models.Model):
 
     menu = models.ForeignKey('Menu',
                              on_delete=models.CASCADE,
-                             related_name='item')
+                             related_name='items')
     name = models.CharField(max_length=64)
     size = models.IntegerField()
     measure_unit = models.CharField(max_length=2,

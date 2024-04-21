@@ -1,0 +1,44 @@
+{% extends 'service/base.html' %}
+
+{% block title %}
+    {{ menu.name }}
+{% endblock %}
+
+{% block content %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'cafe:coffee_house_list'  %}">Главная</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'cafe:coffee_house_details' coffee_house_slug %}">{{ menu.coffee_house }}</a></li>
+      <li class="breadcrumb-item active">{{ menu.name }}</li>
+    </ol>
+</nav>
+
+<h1 class="mb-3 text-center">{{ menu.name }}</h1>
+
+<div class="alert alert-info" role="alert">
+    <h2>{{ menu.name }}</h2>
+    <div class="d-flex flex-row">
+        <a class="text-dark btn btn-outline-primary me-2"
+        href="{% url 'menu:menu_item_add' coffee_house_slug menu.slug %}">Добавить позицию</a>
+        <a class="text-dark btn btn-outline-warning me-2"
+        href="{% url 'menu:menu_edit' coffee_house_slug menu.slug %}">Редактировать</a>
+        <a class="text-white btn btn-danger"
+        href="{% url 'menu:menu_delete' coffee_house_slug menu.slug %}">Удалить</a>
+    </div>
+</div>
+
+{% if item_list %}
+    <h2>Позиции</h2>
+    <div class="alert alert-secondary w-50" role="alert">
+        <div class="list-group my-2 w-100">
+            {% for item in item_list %}
+                <a class="list-group-item list-group-item-action" aria-current="true"
+                href="{% url 'menu:menu_item_details' coffee_house_slug menu_slug item.id %}">{{ forloop.counter }}. {{ item.name }} {{ item.size }}{{ item.measure_unit }}</a>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+
+
+{% endblock %}

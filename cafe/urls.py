@@ -14,4 +14,6 @@ urlpatterns = [
          views.coffee_house_details, name='coffee_house_details'),  # подробнее о кофейне(меню, позиции)
     path('<slug:coffee_house_slug>/edit/',
          views.coffee_house_edit, name='coffee_house_edit'),  # страница редактирования кофейни
+    path('<slug:coffee_house_slug>/delete/',
+         views.coffee_house_delete, name='coffee_house_delete'),  # эндпоинт удаления кофейни
 ]

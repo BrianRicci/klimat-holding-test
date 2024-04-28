@@ -16,12 +16,22 @@
 <body>
     <div class="container">
         <div class="d-flex flex-column flex-md-row align-items-center pb-3 my-3 border-bottom">
-            <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+            <a href="{% url 'cafe:coffee_house_list' %}" class="d-flex align-items-center text-dark text-decoration-none">
                 <span class="fs-4">Тестовое задание Климат Холдинг</span>
             </a>
             
             <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-                <a class="me-3 py-2 text-dark text-decoration-none btn btn-outline-warning" href="{% url 'cafe:coffee_house_add' %}">Добавить новую кофейню</a>
+                <p>User: {{ user }}</p>
+                {% if user.is_authenticated %}
+                <a href="{% url 'cafe:coffee_house_add' %}" class="me-3 py-2 text-dark text-decoration-none btn btn-outline-warning">Добавить новую кофейню</a>
+                <form action="{% url 'account:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="me-3 py-2 text-dark text-decoration-none btn btn-outline-danger">Log Out</button>
+                </form>
+                {% else %}
+                    <a href="{% url 'account:login' %}" class="me-3 py-2 text-dark text-decoration-none btn btn-outline-success">Login</a>
+                    <a href="{% url 'account:register' %}" class="me-3 py-2 text-dark text-decoration-none btn btn-outline-success">Register</a>
+                {% endif %}
             </nav>
         </div>
         {% block content %}{% endblock %}

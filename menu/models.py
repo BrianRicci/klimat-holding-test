@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from slugify import slugify
 
 
@@ -9,6 +10,8 @@ class Menu(models.Model):
                                      related_name='menus')
     name = models.CharField(max_length=64, unique=True)
     slug = models.SlugField(max_length=128, unique=True)
+    user = models.ForeignKey(
+        User, verbose_name='Пользователь', on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['name']
@@ -40,6 +43,8 @@ class MenuItem(models.Model):
     size = models.IntegerField()
     measure_unit = models.CharField(max_length=2,
                                     choices=MeasureUnit.choices)
+    user = models.ForeignKey(
+        User, verbose_name='Пользователь', on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['name']

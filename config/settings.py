@@ -31,9 +31,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = 'account.User'
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+# account app settings
+# AUTH_USER_MODEL = 'account.User'
+# LOGIN_REDIRECT_URL = '/'
+# LOGOUT_REDIRECT_URL = '/'
 
 # Application definition
 
@@ -50,7 +51,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'cafe.apps.CafeConfig',
     'menu.apps.MenuConfig',
-    'account.apps.AccountConfig',
+    # 'account.apps.AccountConfig',
 ]
 
 MIDDLEWARE = [

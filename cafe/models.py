@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from slugify import slugify
 
 
@@ -10,6 +11,8 @@ class CoffeeHouse(models.Model):
     work_time = models.CharField(max_length=128, blank=False)
     created = models.DateTimeField(auto_now_add=True)
     description = models.TextField(blank=True)
+    user = models.ForeignKey(
+        User, verbose_name='Пользователь', on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['-created']

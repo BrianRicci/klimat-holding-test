@@ -1,5 +1,5 @@
 from rest_framework import generics
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 
 from cafe.models import CoffeeHouse
 from .serializers import CoffeeHouseSerializer
@@ -17,7 +17,7 @@ class CoffeeHouseAPIList(generics.ListCreateAPIView):
 class CoffeeHouseAPIUpdate(generics.RetrieveUpdateAPIView):
     queryset = CoffeeHouse.objects.all()
     serializer_class = CoffeeHouseSerializer
-    permission_classes = (IsOwnerOrReadOnly, )
+    permission_classes = (IsAuthenticated, )
 
 
 class CoffeeHouseAPIDestroy(generics.RetrieveDestroyAPIView):

@@ -5,14 +5,18 @@
 
 Технологии использованные в проекте:
 - Django
+- DRF
+- PostgreSQL
 - HTML
 - CSS
 - Bootstrap
 
 Python фреймворки/библиотеки использованные в проекте:
-- Django
+- django
+- djangorestframework
 - python-dotenv
 - python-slugify
+- psycopg2
 
 ## Установка
 Для начала должен быть установлен Python на компьютере, желательно не ниже 3.11.3 версии, т.к. проект создавался именно на нем.
